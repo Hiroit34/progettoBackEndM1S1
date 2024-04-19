@@ -1,50 +1,65 @@
 package mediaplayer;
 
-public class Audio extends ElementiMultimediali implements ElementiRiproducibili{
-    int volume;
+// Classe che rappresenta una registrazione audio
+public class Audio extends ElementoMultimediale implements ElementoRiproducibile {
+    private int duration; // Durata della registrazione audio
+    private static final int MIN_VOLUME = 0; // Volume minimo
+    private static final int MAX_VOLUME = 10; // Volume massimo
 
-    public Audio(String title, int volume) {
+    private int volume; // Livello di volume attuale
+
+    // Costruttore della classe Audio
+    public Audio(String title, int volume, int duration) {
         super(title);
-        this.volume = volume;
-    }
-    //Effetuo Override
-    @Override
-    public int duration() { /* Effetuo l'override del metodo duration*/
-        return 14;
+        // Imposta il volume al valore compreso tra MIN_VOLUME e MAX_VOLUME
+        this.volume = Math.min(Math.max(volume, MIN_VOLUME), MAX_VOLUME);
+        this.duration = duration; // Imposta la durata della registrazione audio
     }
 
+    // Metodo per ottenere la durata della registrazione audio
     @Override
-    /* Effetuo l'override del metodo play per poter mostrare il volume e per stampare
-    * tante volte il titolo tanto quanto è la durata della registrazione audio*/
+    public int duration() {
+        return duration;
+    }
+
+    // Metodo per riprodurre la registrazione audio
+    @Override
     public void play() {
+        // Ciclo per riprodurre la registrazione audio per la sua durata
         for (int i = 0; i < duration(); i++) {
-            System.out.println(title + " " + "!".repeat(volume));
+            String output = title + " "; // Titolo della registrazione
+            // Genera una stringa di "!" per rappresentare il livello di volume
+            for (int j = 0; j < volume; j++) {
+                output += "!";
+            }
+            System.out.println(output); // Stampa l'output
         }
     }
-    /*Creo il metodo per alzare il volume e imposto il volume a 0 ogni volta
-    * che l'utente cerca di diminiuire il volume sotto lo 0, di conseguenza stampo che il valore del volume
-    * è uguale a 0*/
+
+    // Metodo per aumentare il volume
     public void volumeUp() {
-        if (volume > 0) {
-            volume--;
-        } else if (volume == 0) {
-            System.out.println("Volume a 0");
-            volume = 0;
+        if (volume > MIN_VOLUME) { // Se il volume non è al minimo
+            volume--; // Diminuisci il volume
+        } else {
+            System.out.println("Volume a 0"); // Altrimenti, il volume è già al minimo
         }
     }
-    /*Creo il metodo volume per regolare il volume in aumento ed ho impostato il volume massimo a 10. Quindi
-    * se l'utente cercasse di aumentare il volume oltre il 10, il metotodo imposterebbe il volume a 10*/
+
+    // Metodo per diminuire il volume
     public void volumeDown() {
-            volume++;
-        if (volume == 10) {
-            System.out.println("Livello volume al massimo");
-            volume = 10;
-        };
+        if (volume < MAX_VOLUME) { // Se il volume non è al massimo
+            volume++; // Aumenta il volume
+        } else {
+            System.out.println("Livello volume al massimo"); // Altrimenti, il volume è già al massimo
+        }
     }
-    /*Ho creato il metodo per dare l'oppurtintà di ottenere il volume corrente*/
+
+    // Metodo per ottenere il livello di volume attuale
     public void getVolume() {
         System.out.println("Livello volume a: " + volume);
     }
+
+    // Metodo per eseguire la riproduzione della registrazione audio
     public void esegui() {
         play();
     }

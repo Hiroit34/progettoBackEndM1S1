@@ -1,10 +1,10 @@
 package mediaplayer;
 //Creo una classe astratta da estendere a tutti i file multimediali
-public abstract class ElementiMultimediali {
+public abstract class ElementoMultimediale {
     String title;
 
     // Creo creo una
-    public ElementiMultimediali(String title) {
+    public ElementoMultimediale(String title) {
         this.title = title;
     }
 
