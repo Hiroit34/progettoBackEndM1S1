@@ -17,6 +17,7 @@ public class Audio extends ElementiMultimediali implements ElementiRiproducibili
     /* Effetuo l'override del metodo play per poter mostrare il volume e per stampare
     * tante volte il titolo tanto quanto è la durata della registrazione audio*/
     public void play() {
+
         for (int i = 0; i < duration(); i++) {
             for (int j = 0; j < volume; j++) {
                 System.out.println("!");
