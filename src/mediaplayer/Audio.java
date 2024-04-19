@@ -13,7 +13,7 @@ public class Audio extends ElementoMultimediale implements ElementoRiproducibile
         super(title);
         // Imposta il volume al valore compreso tra MIN_VOLUME e MAX_VOLUME
         this.volume = Math.min(Math.max(volume, MIN_VOLUME), MAX_VOLUME);
-        this.duration = duration; // Imposta la durata della registrazione audio
+        this.duration = duration; //Imposta la durata della registrazione audio
     }
 
     // Metodo per ottenere la durata della registrazione audio
