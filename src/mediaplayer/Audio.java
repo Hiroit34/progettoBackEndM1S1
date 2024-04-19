@@ -17,12 +17,8 @@ public class Audio extends ElementiMultimediali implements ElementiRiproducibili
     /* Effetuo l'override del metodo play per poter mostrare il volume e per stampare
     * tante volte il titolo tanto quanto è la durata della registrazione audio*/
     public void play() {
-
         for (int i = 0; i < duration(); i++) {
-            for (int j = 0; j < volume; j++) {
-                System.out.println("!");
-            }
-            System.out.println(title);
+            System.out.println(title + " " + "!".repeat(volume));
         }
     }
     /*Creo il metodo per alzare il volume e imposto il volume a 0 ogni volta
@@ -49,5 +45,7 @@ public class Audio extends ElementiMultimediali implements ElementiRiproducibili
     public void getVolume() {
         System.out.println("Livello volume a: " + volume);
     }
-
+    public void esegui() {
+        play();
+    }
 }
